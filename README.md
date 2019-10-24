@@ -39,10 +39,11 @@ Things you may want to cover:
 |Column|Type|Options|
 |------|----|-------|
 |text|text|null: false|
-|image|text|null: false|
-|user_id|integer|null: false, foreign_key: true|
+|image|text|
+|user_id|integer|foreign_key: true|
 ### Association
 - belongs_to :user
+- belongs_to :group
 
 ## groupsテーブル
 |Column|Type|Options|
@@ -50,7 +51,8 @@ Things you may want to cover:
 |name|string|null: false|
 ### Association
 - has_many :user_groups
-- has_many  :users,  through:  :user_groups
+- has_many :users,  through:  :user_groups
+- has_many :massages
 
 ## user_groupsテーブル
 |Column|Type|Options|
