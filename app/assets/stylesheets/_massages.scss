@@ -20,6 +20,10 @@
       &--user-menu{
         display: flex;
       }
+      .side-header__box--menu-list{
+        color: white;
+        text-decoration: none;
+      }
     }
   }
   .groups{
@@ -28,6 +32,10 @@
     padding: 20px 20px 0;
     overflow: scroll;
     .group{
+      .group__group{
+        color: white;
+        text-decoration: none;
+      }
       margin-bottom: 40px;
       &__group--name{
         font-size: 15px;

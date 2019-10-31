@@ -1,0 +1,19 @@
+.chat__side
+  .side-header
+    .side-header__box
+      %p.side-header__box--user-name
+        = current_user.name
+      %ul.side-header__box--menu
+        = link_to new_group_path, class: "side-header__box--menu-list" do
+          = fa_icon 'pencil-square-o', class: 'icon'
+        = link_to edit_user_path(current_user), class: "side-header__box--menu-list" do
+          = fa_icon 'cog', class: 'icon'
+
+  .groups
+    - current_user.groups.each do |group|
+      .group
+        = link_to group_messages_path(group), class: "group__group" do
+          %p.group__group--name
+            Group name
+          %p.group__lastest--massage
+            まだメッセージはありません
