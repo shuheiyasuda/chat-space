@@ -14,6 +14,6 @@
       .group
         = link_to group_messages_path(group), class: "group__group" do
           %p.group__group--name
-            Group name
+            = group.name
           %p.group__lastest--massage
-            まだメッセージはありません
+            = group.show_last_message
