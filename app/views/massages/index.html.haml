@@ -34,9 +34,11 @@
 
   .new-message
     .new-message__post
-      .new-message__post--input
-        %input.input{placeholder: "type a message"}
-          %label.label{for: "upload-icon"}
-            = fa_icon "image"
-        %input.send{type: "submit", value: "Send"}
-        
+      .from
+        = form_for [@group, @message] do |f|
+          = f.text_field :text, class: "form__message", placeholder: "type a message"
+          .form__mask
+            = f.label :image, class: "form__mask__image" do
+              = fa_icon "picture-o", class: "icon"
+              = f.file_field :image, class: "hidden"
+          = f.submit 'Send', class: 'form__submit'
