@@ -1,0 +1,30 @@
+.wrapper
+
+  = render 'shared/side_bar'
+
+
+.chat-main
+  .main-header
+    .main-header__left-box
+      %h2.main-header__left-box--current-group
+        Group name 
+      %ul.main-header__left-box--member-list
+        Member :
+        %li.main-header__left-box--member-list-member
+          加藤さん、佐藤さん
+    .main-header__edit-btn
+      Edit
+
+  .messages
+    = render @messages
+    
+
+  .new-messages
+    .new-message__post
+      .new-message__post--input
+        = form_for [@group, @message] do |f|
+          = f.text_field :text, class: "input", placeholder: "type a message"
+          = f.label :image, class: "label" do
+            = fa_icon "picture-o", class: "icon"
+            = f.file_field :image, class: "hidden"
+          = f.submit 'Send', class: 'send'
