@@ -87,18 +87,42 @@
       color: #38aef0;
     }
   }
-  .massages{
+  .messages{
     height: calc(100vh - 190px);
     padding: 46px 40px;
     background-color: #fafafa;
     overflow: scroll;
+    .message {
+      .upper-message {
+        display: flex;
+        &__user-name {
+          color: #434a54;
+          font-size: 16px;
+          font-weight: bold;
+        }
+        &__date {
+          color: #999;
+          font-size: 12px;
+          padding-left: 10px;
+        }
+      }
+      .lower-message {
+        margin-top: 10px;
+        &__content {
+          color: #434a54;
+          font-size: 14px;
+          margin-bottom: 40px;
+        }
+      }
+    }
   }
 }
 
-.new-message{
+.new-messages{
   height: 90px;
   padding: 20px 40px;
   background-color: #ddd;
+  width: 100%;
   &__post--input{
     position: relative;
     width: 100%;
@@ -109,6 +133,7 @@
       padding: 0 40px 0 10px;
       color: #434a54;
       border-style: none;
+      float: left;
     }
     .label{
       font-size: 1.3rem;
@@ -127,5 +152,25 @@
     background-color: #38aef0;
     color: white;
     cursor: pointer;
+    float: right;
+  }
+
+  .icon{
+    position: absolute;
+    right: 230px;
+    bottom: 35px;
+    font-size: 20px;
+  }
+  .input{
+    height: 50px;
+    width: 900px;
+    padding: 0 40px 0 10px;
+    color: #434a54;
+    border-style: none;
+    float: left;
+  }
+
+  .hidden{
+    display: none;
   }
 }
