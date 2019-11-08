@@ -84,7 +84,10 @@
       border: solid 1px #38aef0;
       position: absolute;
       right: 40px;
-      color: #38aef0;
+      &--btn{
+        text-decoration: none;
+        color: #38aef0;
+      }
     }
   }
   .messages{
