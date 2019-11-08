@@ -7,13 +7,14 @@
   .main-header
     .main-header__left-box
       %h2.main-header__left-box--current-group
-        Group name 
+        = @group.name
       %ul.main-header__left-box--member-list
         Member :
         %li.main-header__left-box--member-list-member
-          加藤さん、佐藤さん
+          - @group.users.each do |user|
+            = user.name
     .main-header__edit-btn
-      Edit
+      = link_to "Edit", edit_group_path(@group), class: "main-header__edit-btn--btn"
 
   .messages
     = render @messages
