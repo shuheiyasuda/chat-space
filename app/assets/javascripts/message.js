@@ -1,5 +1,6 @@
 $(function(){
   function buildHTML(message){
+    let image = message.image ? `<img src= "${message.image} " class="lower-message__image" >` : '';
     let html = `<div class= "message">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
@@ -13,6 +14,7 @@ $(function(){
                     <p class="lower-message__content">
                       ${message.text}
                     </p>
+                      ${image}
                   </div>
                 </div>`
     return html;
@@ -41,4 +43,28 @@ $(function(){
       alert("メッセージ送信に失敗しました");
     });
   })
+
+  var reloadMessages = function() {
+    if (window.location.href.match(/\/groups\/\d+\/messages/)){
+      let last_message_id = $(".message").last().data("id");
+      $.ajax({
+        url: '/groups/' + group_id + '/api/messages',
+        type: 'get',
+        dataType: 'json',
+        data: {last_id: last_message_id}
+      })
+      .done(function(messages) {
+        var insertHTML = '';
+        messages.forEach(function (message) {
+          insertHTML = buildHTML(message); 
+          $('.messages').append(insertHTML);
+        })
+        $('.messages').animate({scrollTop: $('.messages')[0].scrollHeight}, 'fast');
+      })
+      .fail(function() {
+        console.log('error');
+      });
+    }
+      setInterval(reloadMessages, 5000);
+  };
 });

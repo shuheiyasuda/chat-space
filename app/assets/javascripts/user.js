@@ -17,26 +17,38 @@ $(document).on('turbolinks:load', function() {
     `;
     $("#user-search-result").append(html);
   }
+
   function addDeleteUser(name, id) {
     let html = `
-    <div class="chat-group-user clearfix" id="${id}">
+    <div class="chat-group-user clearfix" data-user-id="${id}">
       <p class="chat-group-user__name">${name}</p>
+      <input value="${id}}" name="group[user_ids][]" type="hidden" data-user-id="group_user_ids_${id}" />
       <div class="ChatMember__remove chat-group-user__btn chat-group-user__btn--remove" data-user-id="${id}" data-user-name="${name}">削除</div>
     </div>`;
     $(".js-add-user").append(html);
   }
-    function addMember(userID) {
-      let html = `<input value="${userId}" name="group[user_ids][]" type="hidden" id="group_user_ids_${userId}" />`;
-      $(`#${userId}`).append(html);
-    }
+    // function addMember(userID) {
+    //   let html = `<input value="${userID}}" name="group[user_ids][]" type="hidden" data-user-id="group_user_ids_${userID}" />`;
+    //   $(`#${userID}`).append(html);
+    // }
   $("#user-search-field").on("keyup", function() {
+
     let input = $(this).val();
+    
+    var userlist = []
+    $(`input[name="group[user_ids][]"]`).each (function(){
+      console.log(this)
+      userlist.push($(this).val())
+    })
+    console.log(userlist)
+
     $.ajax({
       url: "/users",
       type: "GET",
-      data: { keyword: input },
+      data: { keyword: input, user_ids: userlist },
       dataType: "json",
     })
+
       .done(function(users){
         $("#user-search-result").empty();
 
@@ -62,7 +74,7 @@ $(document).on('turbolinks:load', function() {
       .parent()
       .remove();
     addDeleteUser(userName, userId);
-    addMember(userId);
+    // addMember(userId);
   })
   $(document).on("click", ".chat-group-user__btn--remove", function() {
     $(this)
