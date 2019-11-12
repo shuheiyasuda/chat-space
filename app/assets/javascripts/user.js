@@ -27,20 +27,15 @@ $(document).on('turbolinks:load', function() {
     </div>`;
     $(".js-add-user").append(html);
   }
-    // function addMember(userID) {
-    //   let html = `<input value="${userID}}" name="group[user_ids][]" type="hidden" data-user-id="group_user_ids_${userID}" />`;
-    //   $(`#${userID}`).append(html);
-    // }
+    
   $("#user-search-field").on("keyup", function() {
 
     let input = $(this).val();
     
     var userlist = []
     $(`input[name="group[user_ids][]"]`).each (function(){
-      console.log(this)
       userlist.push($(this).val())
     })
-    console.log(userlist)
 
     $.ajax({
       url: "/users",
@@ -74,7 +69,6 @@ $(document).on('turbolinks:load', function() {
       .parent()
       .remove();
     addDeleteUser(userName, userId);
-    // addMember(userId);
   })
   $(document).on("click", ".chat-group-user__btn--remove", function() {
     $(this)
