@@ -21,11 +21,12 @@
     
 
   .new-messages
-    .new-message__post
-      .new-message__post--input
+    .new-messages__post
+      .new-messages__post--input
         = form_for [@group, @message] do |f|
-          = f.text_field :text, class: "input", placeholder: "type a message"
-          = f.label :image, class: "label" do
-            = fa_icon "picture-o", class: "icon"
-            = f.file_field :image, class: "hidden"
+          .new-messages__input
+            = f.text_field :text, class: "input", placeholder: "type a message"
+            = f.label :image, class: "label" do
+              = fa_icon "picture-o", class: "icon"
+              = f.file_field :image, class: "hidden"
           = f.submit 'Send', class: 'send'

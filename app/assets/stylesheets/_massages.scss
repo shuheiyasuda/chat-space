@@ -126,17 +126,29 @@
   padding: 20px 40px;
   background-color: #ddd;
   width: 100%;
+  position: relative;
+  
   &__post--input{
-    position: relative;
+
     width: 100%;
     display: flex;
+
+    .new_message{
+      position: relative;
+      width: 100%;
+      display: flex;
+
+      .new-messages__input{
+        width: 100%;
+      }
+    }
     .input{
       height: 50px;
       width: 100%;
-      padding: 0 40px 0 10px;
       color: #434a54;
       border-style: none;
       float: left;
+      position: relative;
     }
     .label{
       font-size: 1.3rem;
@@ -155,22 +167,15 @@
     background-color: #38aef0;
     color: white;
     cursor: pointer;
-    float: right;
   }
 
-  .icon{
-    position: absolute;
-    right: 230px;
-    bottom: 35px;
-    font-size: 20px;
-  }
+
   .input{
     height: 50px;
-    width: 900px;
+    width: 100%;
     padding: 0 40px 0 10px;
     color: #434a54;
     border-style: none;
-    float: left;
   }
 
   .hidden{

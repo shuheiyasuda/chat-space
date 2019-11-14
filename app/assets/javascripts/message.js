@@ -1,10 +1,11 @@
+$(document).on('turbolinks:load', function() {
 $(function(){
   function buildHTML(message){
     let image = message.image ? `<img src= "${message.image} " class="lower-message__image" >` : '';
-    let html = `<div class= "message">
+    let html = `<div class= "message" data-id="${message.id}">
                   <div class="upper-message">
                     <div class="upper-message__user-name">
-                      ${message.name}
+                      ${message.user_name}
                     </div>
                     <div class="upper-message__date">
                       ${message.created_at}
@@ -48,10 +49,10 @@ $(function(){
     if (window.location.href.match(/\/groups\/\d+\/messages/)){
       let last_message_id = $(".message").last().data("id");
       $.ajax({
-        url: '/groups/' + group_id + '/api/messages',
-        type: 'get',
+        url: 'api/messages',
+        type: 'GET',
         dataType: 'json',
-        data: {last_id: last_message_id}
+        data: {id: last_message_id}
       })
       .done(function(messages) {
         var insertHTML = '';
@@ -65,6 +66,7 @@ $(function(){
         alert('error');
       });
     }
-      setInterval(reloadMessages, 5000);
   };
+  setInterval(reloadMessages, 5000);
 });
+})
